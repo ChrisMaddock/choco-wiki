@@ -55,20 +55,22 @@ This tool makes use of [Ketarin](https://chocolatey.org/packages/ketarin). Ketar
 ### Setup
 
 1. Fork [`chocolatey-packages-template`](https://github.com/chocolatey/chocolatey-packages-template#fork-destination-box) and rename it to something like `chocolatey-packages` (on GitHub - go into Settings, Repository name and rename).
-1. Clone the repo locally.
-1. Install chocopkgup (which will install ketarin and nuget.commandline). `choco install chocolateypackageupdater`.
-1. Check the config in `$env:ChocolateyInstall\lib\ChocolateyPackageUpdater\tools\chocopkgup\chocopkgup.exe.config`. The `PackagesFolder` key should point to where your repository is located.
-1. Create a scheduled task (in Windows). This is the command (edit the path to `cmd.exe` accordingly): `C:\Windows\System32\cmd.exe /c c:\tools\chocolateypackageupdater\ketarinupdate.cmd`
-1. Alternatively to stop the command window from opening on Windows, you can create a VBS script as well and put the path to the `.vbs` file instead of `ketarinupdate.cmd` as the command to run. The file should have the following:
-~~~vb
-Set objShell = WScript.CreateObject("WScript.Shell")
-objShell.Run("C:\tools\ChocolateyPackageUpdater\ketarinupdate.cmd"), 0, True
-~~~
-1. Choose a schedule for the task. Some folks run the task about once an hour to catch updates as quickly as they happen.
-1. Open Ketarin. Choose `File` –> `Settings`.
-1. Now Click Import...
-1. Choose [setup/KetarinSettings.xml](https://github.com/chocolatey/chocolatey-packages-template/blob/master/setup/KetarinSettings.xml) from the repo folder. This is going to add everything in that you will need for settings.
-1. Click on Global Variables. Ensure all of the variables are set appropriately.
+2. Clone the repo locally.
+3. Install chocopkgup (which will install ketarin and nuget.commandline). `choco install chocolateypackageupdater`.
+4. Check the config in `$env:ChocolateyInstall\lib\ChocolateyPackageUpdater\tools\chocopkgup\chocopkgup.exe.config`. The `PackagesFolder` key should point to where your repository is located.
+5. Create a scheduled task (in Windows). This is the command (edit the path to `cmd.exe` accordingly): `C:\Windows\System32\cmd.exe /c c:\tools\chocolateypackageupdater\ketarinupdate.cmd`
+6. Alternatively to stop the command window from opening on Windows, you can create a VBS script as well and put the path to the `.vbs` file instead of `ketarinupdate.cmd` as the command to run. The file should have the following:
+
+    ```vb
+    Set objShell = WScript.CreateObject("WScript.Shell")
+    objShell.Run("C:\tools\ChocolateyPackageUpdater\ketarinupdate.cmd"), 0, True
+    ```
+    
+7. Choose a schedule for the task. Some folks run the task about once an hour to catch updates as quickly as they happen.
+8. Open Ketarin. Choose `File` –> `Settings`.
+9. Now Click Import...
+10. Choose [setup/KetarinSettings.xml](https://github.com/chocolatey/chocolatey-packages-template/blob/master/setup/KetarinSettings.xml) from the repo folder. This is going to add everything in that you will need for settings.
+11. Click on Global Variables. Ensure all of the variables are set appropriately.
 ![Ketarin Global Variables](images/chocopkgup/KetarinGlobalVariables.png)
 
 This gets Ketarin all set up with a global command for all packages we create.
